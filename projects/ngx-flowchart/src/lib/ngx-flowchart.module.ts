@@ -8,6 +8,7 @@ import { FcConnectorDirective } from './connector.directive';
 import { FcNodeContainerComponent } from './node.component';
 import { FC_NODE_COMPONENT_CONFIG } from './ngx-flowchart.models';
 import { DefaultFcNodeComponent } from './default-node.component';
+import { FcNodeComponent} from './node.component'
 
 @NgModule({
   entryComponents: [

@@ -10,7 +10,8 @@ import {
   OnInit,
   SimpleChanges,
   ViewChild,
-  ViewContainerRef
+  ViewContainerRef,
+  Injectable
 } from '@angular/core';
 import {
   FC_NODE_COMPONENT_CONFIG,
@@ -198,7 +199,7 @@ export class FcNodeContainerComponent implements OnInit, AfterViewInit, OnChange
 
 }
 
-@Directive()
+@Injectable()
 export abstract class FcNodeComponent implements OnInit {
 
   @Input()
