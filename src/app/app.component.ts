@@ -108,7 +108,28 @@ export class AppComponent implements AfterViewInit {
   }
 
   private initData() {
-    for (let i = 0; i < 10; i++) {
+    
+    var node:FcNode = {id:'5e88980e9f880b2f50b6f366',x:800,y:300,
+      name:"",
+      connectors:[
+          {type:'leftConnector',id:'5ea8a2980178a160bc046914'},
+          {type:'rightConnector',id:'5ea8a2ba0178a160bc046915'}
+        ]
+      };
+    this.model.nodes.push(node);
+    node = {id:'5e88981e9f880b2f50b6f36a',x:1000,y:100,
+    name:"",
+    connectors:[{type:'leftConnector',id:'5ea8a2e80178a160bc046916'},{type:'rightConnector',id:'5ea8a2fb0178a160bc046917'}]}
+    this.model.nodes.push(node);
+    node = {id:'5e7e0cdc55c7e37f2ca39e3f',x:1000,y:400,name:"", connectors:[{type:'leftConnector',id:'5ea8a3180178a160bc046918'},{type:'rightConnector',id:'5ea8a3280178a160bc046919'}]}
+    this.model.nodes.push(node)
+
+    var edge = {source:'5ea8a2ba0178a160bc046915',destination:'5ea8a2e80178a160bc046916',label:''}
+    this.model.edges.push(edge)
+    edge = {source:'5ea8a2ba0178a160bc046915',destination:'5ea8a3180178a160bc046918',label:''}
+    this.model.edges.push(edge)
+
+   /* for (let i = 0; i < 10; i++) {
       const node: FcNode = {
         name: 'type' + i,
         id: (i + 1) + '',
@@ -221,7 +242,7 @@ export class AppComponent implements AfterViewInit {
           label: 'label3'
         }
       ]
-    );
+    );*/
   }
 
   @HostListener('keydown.control.a', ['$event'])
@@ -240,16 +261,21 @@ export class AppComponent implements AfterViewInit {
       this.fcCanvas.modelService.deleteSelected();
     }
   }
-
+  public mongoObjectId() {
+    var timestamp = (new Date().getTime() / 1000 | 0).toString(16);
+    return timestamp + 'xxxxxxxxxxxxxxxx'.replace(/[x]/g, function() {
+        return (Math.random() * 16 | 0).toString(16);
+    }).toLowerCase();
+};
   public addNewNode() {
     const nodeName = prompt('Enter a node name:', 'New node');
     if (!nodeName) {
       return;
     }
-
+  
     const newNode: FcNode = {
       name: nodeName,
-      id: (this.nextNodeID++) + '',
+      id: this.mongoObjectId() + '',
       x: 200,
       y: 100,
       color: '#F15B26',

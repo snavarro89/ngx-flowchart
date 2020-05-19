@@ -9,14 +9,14 @@ import { TestFcNodeComponent } from './test-node.component';
   entryComponents: [
     TestFcNodeComponent
   ],
-  /*providers: [
+  providers: [
     {
       provide: FC_NODE_COMPONENT_CONFIG,
       useValue: {
         nodeComponentType: TestFcNodeComponent
       }
     }
-  ],*/
+  ],
   declarations: [
     AppComponent,
     TestFcNodeComponent
