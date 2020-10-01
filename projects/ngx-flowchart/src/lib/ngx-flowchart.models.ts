@@ -52,12 +52,12 @@ export interface FcRectBox {
 }
 
 export interface FcConnector {
-  id: string;
+  _id: string;
   type: string;
 }
 
 export interface FcNode extends FcCoords {
-  id: string;
+  _id: string;
   name: string;
   connectors: Array<FcConnector>;
   readonly?: boolean;
@@ -158,21 +158,21 @@ export class ModelvalidationError extends BaseError {
 export function fcTopSort(graph: FcModel): Array<string> | null {
   const adjacentList: FcAdjacentList = {};
   graph.nodes.forEach((node) => {
-    adjacentList[node.id] = {incoming: 0, outgoing: []};
+    adjacentList[node._id] = {incoming: 0, outgoing: []};
   });
   graph.edges.forEach((edge) => {
     const sourceNode = graph.nodes.filter((node) => {
       return node.connectors.some((connector) => {
-        return connector.id === edge.source;
+        return connector._id === edge.source;
       });
     })[0];
     const destinationNode = graph.nodes.filter((node) => {
       return node.connectors.some((connector) => {
-        return connector.id === edge.destination;
+        return connector._id === edge.destination;
       });
     })[0];
-    adjacentList[sourceNode.id].outgoing.push(destinationNode.id);
-    adjacentList[destinationNode.id].incoming++;
+    adjacentList[sourceNode._id].outgoing.push(destinationNode._id);
+    adjacentList[destinationNode._id].incoming++;
   });
   const orderedNodes: string[] = [];
   const sourceNodes: string[] = [];

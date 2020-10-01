@@ -16,25 +16,25 @@ export class FcModelValidationService {
     const ids: string[] = [];
     nodes.forEach((node) => {
       this.validateNode(node);
-      if (ids.indexOf(node.id) !== -1) {
+      if (ids.indexOf(node._id) !== -1) {
         throw new ModelvalidationError('Id not unique.');
       }
-      ids.push(node.id);
+      ids.push(node._id);
     });
     const connectorIds: string[] = [];
     nodes.forEach((node) => {
       node.connectors.forEach((connector) => {
-        if (connectorIds.indexOf(connector.id) !== -1) {
+        if (connectorIds.indexOf(connector._id) !== -1) {
           throw new ModelvalidationError('Id not unique.');
         }
-        connectorIds.push(connector.id);
+        connectorIds.push(connector._id);
       });
     });
     return nodes;
   }
 
   public validateNode(node: FcNode): FcNode {
-    if (node.id === undefined) {
+    if (node._id === undefined) {
       throw new ModelvalidationError('Id not valid.');
     }
     if (typeof node.name !== 'string') {
@@ -90,11 +90,11 @@ export class FcModelValidationService {
     if (edge.source === edge.destination) {
       throw new ModelvalidationError('Edge with same source and destination connectors.');
     }
-    const sourceNode = nodes.filter((node) => node.connectors.some((connector) => connector.id === edge.source))[0];
+    const sourceNode = nodes.filter((node) => node.connectors.some((connector) => connector._id === edge.source))[0];
     if (sourceNode === undefined) {
       throw new ModelvalidationError('Source not valid.');
     }
-    const destinationNode = nodes.filter((node) => node.connectors.some((connector) => connector.id === edge.destination))[0];
+    const destinationNode = nodes.filter((node) => node.connectors.some((connector) => connector._id === edge.destination))[0];
     if (destinationNode === undefined) {
       throw new ModelvalidationError('Destination not valid.');
     }
@@ -110,7 +110,7 @@ export class FcModelValidationService {
   }
 
   public validateConnector(connector: FcConnector): FcConnector {
-    if (connector.id === undefined) {
+    if (connector._id === undefined) {
       throw new ModelvalidationError('Id not valid.');
     }
     if (connector.type === undefined || connector.type === null || typeof connector.type !== 'string') {

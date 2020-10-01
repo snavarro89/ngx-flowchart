@@ -1,16 +1,16 @@
 <div (click)="canvasClick($event)" class="fc-canvas-container">
   <svg class="fc-canvas-svg">
     <defs>
-      <marker class="fc-arrow-marker" [attr.id]="arrowDefId" markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12" refX="10" refY="0" markerUnits="strokeWidth" orient="auto">
+      <marker class="fc-arrow-marker" [attr._id]="arrowDefId" markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12" refX="10" refY="0" markerUnits="strokeWidth" orient="auto">
         <polygon points="-2,0 -5,5 5,0 -5,-5" stroke="gray" fill="gray" stroke-width="1px"/>
       </marker>
-      <marker class="fc-arrow-marker-selected" [attr.id]="arrowDefIdSelected" markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12" refX="10" refY="0" markerUnits="strokeWidth" orient="auto">
+      <marker class="fc-arrow-marker-selected" [attr._id]="arrowDefIdSelected" markerWidth="5" markerHeight="5" viewBox="-6 -6 12 12" refX="10" refY="0" markerUnits="strokeWidth" orient="auto">
         <polygon points="-2,0 -5,5 5,0 -5,-5" stroke="red" fill="red" stroke-width="1px"/>
       </marker>
     </defs>
     <g *ngFor="let edge of model.edges; let $index = index">
       <path
-        [attr.id]="'fc-edge-path-'+$index"
+        [attr._id]="'fc-edge-path-'+$index"
         (mousedown)="edgeMouseDown($event, edge)"
         (click)="edgeClick($event, edge)"
         (dblclick)="edgeDoubleClick($event, edge)"
@@ -60,7 +60,7 @@
           left: (edgeDrawingService.getEdgeCenter(edgeDraggingService.edgeDragging.dragPoint1, edgeDraggingService.edgeDragging.dragPoint2).x)+'px'
        }">
     <div class="fc-edge-label-text">
-      <span [attr.id]="'fc-edge-label-dragging'" *ngIf="edgeDraggingService.edgeDragging.dragLabel">{{edgeDraggingService.edgeDragging.dragLabel}}</span>
+      <span [attr._id]="'fc-edge-label-dragging'" *ngIf="edgeDraggingService.edgeDragging.dragLabel">{{edgeDraggingService.edgeDragging.dragLabel}}</span>
     </div>
   </div>
   <div
@@ -87,7 +87,7 @@
       <div *ngIf="modelService.isEditable()" class="fc-noselect fc-nodedelete" (click)="edgeRemove($event, edge)">
         &times;
       </div>
-      <span [attr.id]="'fc-edge-label-'+$index" *ngIf="edge.label">{{edge.label}}</span>
+      <span [attr._id]="'fc-edge-label-'+$index" *ngIf="edge.label">{{edge.label}}</span>
     </div>
   </div>
   <div id="select-rectangle" class="fc-select-rectangle" hidden>

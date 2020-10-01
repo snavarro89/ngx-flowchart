@@ -39,7 +39,7 @@ export class FcConnectorDirective implements OnInit, OnChanges {
       height: this.elementRef.nativeElement.offsetHeight,
       nodeRectInfo: this.nodeRectInfo
     };
-    this.modelservice.connectors.setConnectorRectInfo(this.connector.id, connectorRectInfo);
+    this.modelservice.connectors.setConnectorRectInfo(this.connector._id, connectorRectInfo);
   }
 
   ngOnChanges(changes: SimpleChanges): void {

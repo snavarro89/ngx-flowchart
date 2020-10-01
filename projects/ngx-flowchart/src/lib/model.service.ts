@@ -155,7 +155,7 @@ export class FcModelService {
 
   public getNodeAtPoint(x: number, y: number): FcNode {
     for (const node of this.model.nodes) {
-      const element = this.nodes.getHtmlElement(node.id);
+      const element = this.nodes.getHtmlElement(node._id);
       const nodeElementBox = element.getBoundingClientRect();
       if (x >= nodeElementBox.left && x <= nodeElementBox.right
         && y >= nodeElementBox.top && y <= nodeElementBox.bottom) {
@@ -184,7 +184,7 @@ export class FcModelService {
 
   public selectAllInRect(rectBox: FcRectBox) {
     this.model.nodes.forEach((value) => {
-      const element = this.nodes.getHtmlElement(value.id);
+      const element = this.nodes.getHtmlElement(value._id);
       const nodeElementBox = element.getBoundingClientRect();
       if (!value.readonly) {
         const x = nodeElementBox.left + nodeElementBox.width / 2;
@@ -286,7 +286,7 @@ class ConnectorsModel extends AbstractFcModel<FcConnector> {
     const model = this.modelService.model;
     for (const node of model.nodes) {
       for (const connector of node.connectors) {
-        if (connector.id === connectorId) {
+        if (connector._id === connectorId) {
           return connector;
         }
       }
@@ -407,7 +407,7 @@ class NodesModel extends AbstractFcModel<FcNode> {
 
   public getConnectorIds(node: FcNode): Array<string> {
     return node.connectors.map((connector) => {
-      return connector.id;
+      return connector._id;
     });
   }
 
@@ -487,8 +487,8 @@ class EdgesModel extends AbstractFcModel<FcEdge> {
     this.modelService.modelValidation.validateConnector(sourceConnector);
     this.modelService.modelValidation.validateConnector(destConnector);
     const edge: FcEdge = {};
-    edge.source = sourceConnector.id;
-    edge.destination = destConnector.id;
+    edge.source = sourceConnector._id;
+    edge.destination = destConnector._id;
     edge.label = label;
     const model = this.modelService.model;
     this.modelService.modelValidation.validateEdges(model.edges.concat([edge]), model.nodes);

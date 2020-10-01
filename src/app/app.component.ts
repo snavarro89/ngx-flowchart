@@ -58,14 +58,14 @@ export class AppComponent implements AfterViewInit {
       const name = prompt('Enter a node name:', node.name);
       if (name) {
         node.name = name;
-        node.id = (this.nextNodeID++) + '';
+        node._id = (this.nextNodeID++) + '';
         node.connectors = [
           {
-            id: (this.nextConnectorID++) + '',
+            _id: (this.nextConnectorID++) + '',
             type: FlowchartConstants.leftConnectorType
           },
           {
-            id: (this.nextConnectorID++) + '',
+            _id: (this.nextConnectorID++) + '',
             type: FlowchartConstants.rightConnectorType
           }
         ];
@@ -111,17 +111,17 @@ export class AppComponent implements AfterViewInit {
     for (let i = 0; i < 10; i++) {
       const node: FcNode = {
         name: 'type' + i,
-        id: (i + 1) + '',
+        _id: (i + 1) + '',
         x: 50,
         y: 100 * (i + 1),
         connectors: [
           {
             type: FlowchartConstants.leftConnectorType,
-            id: (i * 2 + 1) + ''
+            _id: (i * 2 + 1) + ''
           },
           {
             type: FlowchartConstants.rightConnectorType,
-            id: (i * 2 + 2) + ''
+            _id: (i * 2 + 2) + ''
           }
         ]
       };
@@ -132,7 +132,7 @@ export class AppComponent implements AfterViewInit {
         {
           name: 'ngxFlowchart',
           readonly: true,
-          id: '2',
+          _id: '2',
           x: 300,
           y: 100,
           color: '#000',
@@ -140,34 +140,34 @@ export class AppComponent implements AfterViewInit {
           connectors: [
             {
               type: FlowchartConstants.leftConnectorType,
-              id: '1'
+              _id: '1'
             },
             {
               type: FlowchartConstants.rightConnectorType,
-              id: '2'
+              _id: '2'
             }
           ]
         },
         {
           name: 'Implemented with Angular',
-          id: '3',
+          _id: '3',
           x: 600,
           y: 100,
           color: '#F15B26',
           connectors: [
             {
               type: FlowchartConstants.leftConnectorType,
-              id: '3'
+              _id: '3'
             },
             {
               type: FlowchartConstants.rightConnectorType,
-              id: '4'
+              _id: '4'
             }
           ]
         },
         {
           name: 'Easy Integration',
-          id: '4',
+          _id: '4',
           x: 1000,
           y: 100,
           color: '#000',
@@ -175,17 +175,17 @@ export class AppComponent implements AfterViewInit {
           connectors: [
             {
               type: FlowchartConstants.leftConnectorType,
-              id: '5'
+              _id: '5'
             },
             {
               type: FlowchartConstants.rightConnectorType,
-              id: '6'
+              _id: '6'
             }
           ]
         },
         {
           name: 'Customizable templates',
-          id: '5',
+          _id: '5',
           x: 1300,
           y: 100,
           color: '#000',
@@ -193,11 +193,11 @@ export class AppComponent implements AfterViewInit {
           connectors: [
             {
               type: FlowchartConstants.leftConnectorType,
-              id: '7'
+              _id: '7'
             },
             {
               type: FlowchartConstants.rightConnectorType,
-              id: '8'
+              _id: '8'
             }
           ]
         }
@@ -249,17 +249,17 @@ export class AppComponent implements AfterViewInit {
 
     const newNode: FcNode = {
       name: nodeName,
-      id: (this.nextNodeID++) + '',
+      _id: (this.nextNodeID++) + '',
       x: 200,
       y: 100,
       color: '#F15B26',
       connectors: [
         {
-          id: (this.nextConnectorID++) + '',
+          _id: (this.nextConnectorID++) + '',
           type: FlowchartConstants.leftConnectorType
         },
         {
-          id: (this.nextConnectorID++) + '',
+          _id: (this.nextConnectorID++) + '',
           type: FlowchartConstants.rightConnectorType
         }
       ]

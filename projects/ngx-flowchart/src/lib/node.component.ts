@@ -57,9 +57,9 @@ export class FcNodeContainerComponent implements OnInit, AfterViewInit, OnChange
   @Input()
   dragging: boolean;
 
-  @HostBinding('attr.id')
+  @HostBinding('attr._id')
   get nodeId(): string {
-    return this.node.id;
+    return this.node._id;
   }
 
   @HostBinding('style.top')
@@ -97,7 +97,7 @@ export class FcNodeContainerComponent implements OnInit, AfterViewInit, OnChange
       element.attr('draggable', 'true');
     }
     this.updateNodeClass();
-    this.modelservice.nodes.setHtmlElement(this.node.id, element[0]);
+    this.modelservice.nodes.setHtmlElement(this.node._id, element[0]);
     this.nodeContentContainer.clear();
     const componentFactory = this.componentFactoryResolver.resolveComponentFactory(this.nodeComponentConfig.nodeComponentType);
     const componentRef = this.nodeContentContainer.createComponent(componentFactory);

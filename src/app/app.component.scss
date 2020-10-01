@@ -40,12 +40,12 @@
     box-shadow: none;
     color: #fff;
     font-size: 20px;
-    background-color: #F15B26;
+    background-color: blue;
     user-select: none;
   }
 
   .button-overlay button:hover:not(:disabled) {
-    border: 4px solid #b03911;
+    border: 4px solid blue;
     border-radius: 5px;
     margin: -4px;
     margin-bottom: 11px;
@@ -55,5 +55,55 @@
     -webkit-filter: brightness(70%);
     filter: brightness(70%);
   }
-
 }
+
+:host ::ng-deep {
+  .fc-leftConnectors, .fc-rightConnectors {
+    position: absolute;
+    top: 0;
+    height: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    z-index: -10;
+    .fc-magnet {
+      align-items: center;
+    }
+  }
+
+  .fc-leftConnectors {
+    left: -20px;
+  }
+
+  .fc-rightConnectors {
+    right: -20px;
+  }
+
+  .fc-magnet {
+    display: flex;
+    flex-grow: 1;
+    height: 60px;
+
+    justify-content: center;
+  }
+
+  .fc-connector {
+    width: 18px;
+    height: 18px;
+
+    border: 10px solid transparent;
+    -moz-background-clip: padding; /* Firefox 3.6 */
+    -webkit-background-clip: padding; /* Safari 4? Chrome 6? */
+    background-clip: padding-box;
+    border-radius: 50% 50%;
+    background-color: purple !important;
+    color: #fff;
+    pointer-events: all;
+
+    &.fc-hover {
+      background-color: #000;
+    }
+  }
+}
+

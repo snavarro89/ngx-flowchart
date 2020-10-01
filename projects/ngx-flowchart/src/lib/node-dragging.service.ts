@@ -79,7 +79,7 @@ export class FcNodeDraggingService {
     if (this.modelService.nodes.isSelected(node)) {
       const selectedNodes = this.modelService.nodes.getSelectedNodes();
       for (const selectedNode of selectedNodes) {
-        const element = $(this.modelService.nodes.getHtmlElement(selectedNode.id));
+        const element = $(this.modelService.nodes.getHtmlElement(selectedNode._id));
         elements.push(element);
         nodes.push(selectedNode);
       }

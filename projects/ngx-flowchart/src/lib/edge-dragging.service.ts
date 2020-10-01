@@ -50,7 +50,7 @@ export class FcEdgeDraggingService {
     let prevEdge: FcEdge;
     if (connector.type === FlowchartConstants.leftConnectorType) {
       for (const edge of this.model.edges) {
-        if (edge.destination === connector.id) {
+        if (edge.destination === connector._id) {
           swapConnector = this.modelService.connectors.getConnector(edge.source);
           dragLabel = edge.label;
           prevEdge = edge;
@@ -64,12 +64,12 @@ export class FcEdgeDraggingService {
     this.edgeDragging.isDragging = true;
     if (swapConnector !== undefined) {
       this.draggedEdgeSource = swapConnector;
-      this.edgeDragging.dragPoint1 = this.modelService.connectors.getCenteredCoord(swapConnector.id);
+      this.edgeDragging.dragPoint1 = this.modelService.connectors.getCenteredCoord(swapConnector._id);
       this.edgeDragging.dragLabel = dragLabel;
       this.edgeDragging.prevEdge = prevEdge;
     } else {
       this.draggedEdgeSource = connector;
-      this.edgeDragging.dragPoint1 = this.modelService.connectors.getCenteredCoord(connector.id);
+      this.edgeDragging.dragPoint1 = this.modelService.connectors.getCenteredCoord(connector._id);
     }
     const canvas = this.modelService.canvasHtmlElement;
     if (!canvas) {
@@ -154,8 +154,8 @@ export class FcEdgeDraggingService {
       this.dragover(event);
       try {
         this.modelValidation.validateEdges(this.model.edges.concat([{
-          source: this.draggedEdgeSource.id,
-          destination: connector.id
+          source: this.draggedEdgeSource._id,
+          destination: connector._id
         }]), this.model.nodes);
       } catch (error) {
         if (error instanceof ModelvalidationError) {
@@ -181,8 +181,8 @@ export class FcEdgeDraggingService {
       this.dragover(event);
       try {
         this.modelValidation.validateEdges(this.model.edges.concat([{
-          source: this.draggedEdgeSource.id,
-          destination: connector.id
+          source: this.draggedEdgeSource._id,
+          destination: connector._id
         }]), this.model.nodes);
       } catch (error) {
         if (error instanceof ModelvalidationError) {
@@ -196,7 +196,7 @@ export class FcEdgeDraggingService {
 
           this.edgeDragging.magnetActive = true;
 
-          this.edgeDragging.dragPoint2 = this.modelService.connectors.getCenteredCoord(connector.id);
+          this.edgeDragging.dragPoint2 = this.modelService.connectors.getCenteredCoord(connector._id);
           this.edgeDragging.pathElement.attr('d',
             this.edgeDrawingService.getEdgeDAttribute(this.edgeDragging.dragPoint1, this.edgeDragging.dragPoint2, this.edgeStyle));
           this.edgeDragging.circleElement.attr('cx', this.edgeDragging.dragPoint2.x);
@@ -207,7 +207,7 @@ export class FcEdgeDraggingService {
           return false;
         } else if (this.dragAnimation === FlowchartConstants.dragAnimationRepaint) {
           return this.applyFunction(() => {
-            this.edgeDragging.dragPoint2 = this.modelService.connectors.getCenteredCoord(connector.id);
+            this.edgeDragging.dragPoint2 = this.modelService.connectors.getCenteredCoord(connector._id);
             event.preventDefault();
             event.stopPropagation();
             return false;
@@ -242,8 +242,8 @@ export class FcEdgeDraggingService {
     if (this.edgeDragging.isDragging) {
       try {
         this.modelValidation.validateEdges(this.model.edges.concat([{
-          source: this.draggedEdgeSource.id,
-          destination: targetConnector.id
+          source: this.draggedEdgeSource._id,
+          destination: targetConnector._id
         }]), this.model.nodes);
       } catch (error) {
         if (error instanceof ModelvalidationError) {
